@@ -1,13 +1,17 @@
 package Online_voting;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Candidate {
 
     private String name;
     private int votes;
+    private final ReentrantLock lock = new ReentrantLock();
 
-    public Candidate(String name, int votes) {
+
+    public Candidate(String name) {
         this.name = name;
-        this.votes = votes;
+
     }
     public String getName() {
         return name;
@@ -16,8 +20,13 @@ public class Candidate {
         return votes;
     }
 
-    public synchronized void addVotes(int votes) {
-    votes++;
+    public void addVote(){
+        lock.lock();
+        try {
+            votes ++;
+        } finally {
+            lock.unlock();
+        }
     }
 
 

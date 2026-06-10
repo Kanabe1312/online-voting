@@ -17,6 +17,9 @@ public class VoteTask  implements Runnable {
         Random  random = new Random();
         try {
             Thread.sleep(random.nextInt(11)+5);
+            election.vote(candidate);
+            statistics.incrementProcessed();
+
         } catch (InterruptedException e) {
            return;
         }

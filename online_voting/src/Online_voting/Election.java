@@ -14,7 +14,8 @@ public class Election {
         return candidates;
     }
     public synchronized void vote(Candidate candidate) {
-        candidates.add(candidate);
+        candidate.addVote();
+
     }
 
 }
